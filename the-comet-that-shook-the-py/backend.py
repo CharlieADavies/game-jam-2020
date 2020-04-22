@@ -31,30 +31,19 @@ def get_new_game():
     return solution_list
 
 
-def get_puzzle_clues(solution_list, fact_templates):
-    # example_fact_template =
-    #     ["{0} live next to the person who likes {4}",
-    #      "The person in the {8} house likes {5}",
-    #      "The person who likes {4} lives in the {7} house",
-    #      "The person who likes {3} doesn't live next to the person who likes {5}",
-    #      "{2}'s house is {8}",
-    #      "{0} lives to the left of the {8} house."]
-    # example_solution =
-    #     ['Tom','Dick','Harry','Grapes','Cherries','Blueberries','Red',
-    #      'White','Blue']
-    # should result in
-    #
-    # ["Tom live next to the person who likes cherries",
-    #  "The person in the blue house likes blueberries",
-    #  "The person who likes cherries lives in the white house",
-    #  "The person who likes grapes doesn't live next to the person who likes bluberries",
-    #  "Harry's house is blue"]
-    #
-    #
-    # apply solution_list elements to fact_templates
-    # clue_list = applied solution_list to fact_templates
-    return clue_list
+X = {'a1': 'Tom', 'a2': 'Dick', 'a3': 'Harry',
+     'f1': 'Grapes', 'f2': 'Cherries', 'f3': 'Blueberries',
+     'c1': 'Red', 'c2': 'White', 'c3': 'Blue'}
 
+Y = ["{a1:} live next to the person who likes {f1:}",
+     "The person in the {c2:} house likes {f2:}",
+     "The person who likes {f1:} lives in the {c1:} house",
+     "The person who likes {a3:} doesn't live next to the person who likes {f2:}",
+     "{a2:}'s house is {c2:}",
+     "{a1:} lives to the left of the {c2:} house."]
+
+def get_puzzle_clues(solution_list, fact_templates):
+    return [fact.format(**solution_list) for fact in fact_templates]
 
 def get_fact_template():
     # need some storage for these and choose one group at random
@@ -77,7 +66,7 @@ def start_new_game():
     # return solution_list, shuffled_list, clue_list
 
     # bogus test code follows:
-    solution_list = ['Tom','Dick','Harry','Grapes','Cherries','Blueberries','Red', 'White','Blue']
+    solution_list = ['Tom', 'Dick', 'Harry', 'Grapes', 'Cherries', 'Blueberries', 'Red', 'White', 'Blue']
     clue_list = ["Tom live next to the person who likes cherries",
                  "The person in the blue house likes blueberries",
                  "The person who likes cherries lives in the white house",
